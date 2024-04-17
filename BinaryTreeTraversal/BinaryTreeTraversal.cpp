@@ -8,7 +8,7 @@ using namespace std;
 
 class BTNode {
 public:
-    bool searchTree(BTNode* p, const int& el) const;
+    //class DFT;
 
     BTNode* left;
     BTNode* right;
@@ -94,6 +94,34 @@ bool searchTree(BTNode* p, const int& el) {
     return valuePresent;
 }
 
+class DFT {
+public:
+    void preorder(BTNode* p) {
+        if (p != 0) {
+            visit(p);
+            preorder(p->left);
+            preorder(p->right);
+        }
+    }
+
+    void inorder(BTNode* p) {
+        if (p != 0) {
+            inorder(p->left);
+            visit(p);
+            inorder(p->right);
+        }
+    }
+
+    void postorder(BTNode* p) {
+        if (p != 0) {
+            postorder(p->left);
+            postorder(p->right);
+            visit(p);
+        }
+    }
+};
+
+
 
 
 void Menu() {
@@ -110,6 +138,7 @@ int main()
     int userValues;
     vector<int> sequence;
     BTNode* root = nullptr;
+    DFT depthTraversal;
 
     do {
         Menu();
@@ -117,7 +146,7 @@ int main()
         std::cin >> menuValue;
 
         if (menuValue < 0 || menuValue > 6 || cin.fail()) {
-            std::cout << "Invalid. Enter a valid number provided in the Menu.";
+            std::cout << "Invalid. Enter a valid number provided in the Menu." << endl;
         }
         else {
             switch (menuValue) {
@@ -142,6 +171,15 @@ int main()
                     breadthFirst(root);
                 else
                     cout << "Oops! Tree does not exist yet. Try creating one first." << endl;
+                break;
+            case 3:
+                depthTraversal.preorder(root);
+                break;
+            case 4:
+                depthTraversal.inorder(root);
+                break;
+            case 5:
+                depthTraversal.postorder(root);
                 break;
             }
         }
