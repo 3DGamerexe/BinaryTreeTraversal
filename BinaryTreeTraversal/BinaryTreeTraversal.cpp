@@ -82,14 +82,9 @@ bool searchTree(BTNode* p, const int& el) {
             p = p->left;
         else
             p = p->right;
-        //else
-        //    cout << "There is not such node in the tree!" << endl; 
     }
-    /*if (p == nullptr) {
-        cout << "Tree does not exist. Create one first!" << endl;
-    }*/
     if (valuePresent == false) {
-        cout << "There is no such node in the tree!" << endl;
+        cout << "There is no such node in the tree!" << endl; 
     }
     return valuePresent;
 }
@@ -121,9 +116,6 @@ public:
     }
 };
 
-
-
-
 void Menu() {
     std::cout << endl;
     std::cout << std::setw(25) << "M E N U" << endl;
@@ -136,7 +128,7 @@ int main()
 {
     int menuValue;
     int userValues;
-    vector<int> sequence;
+    vector<int> sequence; //allows max 6 values
     BTNode* root = nullptr;
     DFT depthTraversal;
 
@@ -161,7 +153,6 @@ int main()
                 break;
             }
             case 1:
-                //cout << root->value << " " << root->left->value << " " << root->right->value << endl;
                 cin >> userValues;
                 searchTree(root, userValues);
                 break;
@@ -173,19 +164,28 @@ int main()
                     cout << "Oops! Tree does not exist yet. Try creating one first." << endl;
                 break;
             case 3:
-                depthTraversal.preorder(root);
+                if (root != nullptr) {
+                    depthTraversal.preorder(root);
+                }
+                else
+                    cout << "Oops! Tree does not exist yet. Try creating one first." << endl;
                 break;
             case 4:
-                depthTraversal.inorder(root);
+                if (root != nullptr) {
+                    depthTraversal.inorder(root);
+                }
+                else 
+                    cout << "Oops! Tree does not exist yet. Try creating one first." << endl;
                 break;
             case 5:
-                depthTraversal.postorder(root);
+                if (root != nullptr) {
+                    depthTraversal.postorder(root);
+                }
+                else 
+                    cout << "Oops! Tree does not exist yet. Try creating one first." << endl;
                 break;
             }
         }
-
-
-
         if (menuValue == 6) {
             std::cout << "Thank you! Have a nice day!" << endl;
         }
