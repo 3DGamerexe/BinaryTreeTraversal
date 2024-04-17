@@ -75,7 +75,7 @@ bool searchTree(BTNode* p, const int& el) {
     while (p != nullptr) { //while the tree is not empty
         if (el == p->value) {
             valuePresent = true;
-            cout << &p->value;
+            cout << p->value;
             break;
         }
         else if (el < p->value)
@@ -85,9 +85,9 @@ bool searchTree(BTNode* p, const int& el) {
         //else
         //    cout << "There is not such node in the tree!" << endl; 
     }
-    if (p == nullptr) {
+    /*if (p == nullptr) {
         cout << "Tree does not exist. Create one first!" << endl;
-    }
+    }*/
     if (valuePresent == false) {
         cout << "There is no such node in the tree!" << endl;
     }
