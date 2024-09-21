@@ -1,11 +1,15 @@
-/* Homework #5, Aaliyah Madison */
-
 #include <iostream>
 #include <iomanip>
 #include <queue>
 #include <vector>
 using namespace std;
 
+/*
+The user has the ability to create a binary tree and using the menu, they are able
+to search, traverse, insert, or sort their tree.
+*/
+
+//node class
 class BTNode {
 public:
     //class DFT;
@@ -21,10 +25,12 @@ public:
     }
 };
 
+//visits and prints each node value
 void visit(BTNode* node) {
     cout << node->value << " ";
 }
 
+//inserts a node
 BTNode* insert(BTNode* root, int val) {
     if (!root) {
         return new BTNode(val);
@@ -39,6 +45,7 @@ BTNode* insert(BTNode* root, int val) {
     return root;
 }
 
+//creates the binary tree
 BTNode* createTree(vector<int>& seq) {
     BTNode* root = nullptr;
     for (int i : seq) {
@@ -47,7 +54,7 @@ BTNode* createTree(vector<int>& seq) {
     return root;
 }
 
-
+//breadth first search the tree
 void breadthFirst(BTNode* root) {
     if (!root) {
         return;
@@ -70,6 +77,7 @@ void breadthFirst(BTNode* root) {
     }
 }
 
+//searches for a value within the tree and returns if the value exists or not
 bool searchTree(BTNode* p, const int& el) {
     bool valuePresent = false;
     while (p != nullptr) { //while the tree is not empty
@@ -84,13 +92,15 @@ bool searchTree(BTNode* p, const int& el) {
             p = p->right;
     }
     if (valuePresent == false) {
-        cout << "There is no such node in the tree!" << endl; 
+        cout << "There is no such node in the tree!" << endl;
     }
     return valuePresent;
 }
 
+//class containing searching algorithms
 class DFT {
 public:
+    //preorder search algoithm 
     void preorder(BTNode* p) {
         if (p != 0) {
             visit(p);
@@ -99,6 +109,7 @@ public:
         }
     }
 
+    //inorder search algorithm
     void inorder(BTNode* p) {
         if (p != 0) {
             inorder(p->left);
@@ -107,6 +118,7 @@ public:
         }
     }
 
+    //postorder search algorithm
     void postorder(BTNode* p) {
         if (p != 0) {
             postorder(p->left);
@@ -116,6 +128,10 @@ public:
     }
 };
 
+/*
+creates the user menu allowing the user to decide how they want their tree to be sorted, searched,
+or traversed.
+*/
 void Menu() {
     std::cout << endl;
     std::cout << std::setw(25) << "M E N U" << endl;
@@ -124,6 +140,7 @@ void Menu() {
     std::cout << "Exit Program(6)" << endl << endl;
 }
 
+//main function
 int main()
 {
     int menuValue;
@@ -174,14 +191,14 @@ int main()
                 if (root != nullptr) {
                     depthTraversal.inorder(root);
                 }
-                else 
+                else
                     cout << "Oops! Tree does not exist yet. Try creating one first." << endl;
                 break;
             case 5:
                 if (root != nullptr) {
                     depthTraversal.postorder(root);
                 }
-                else 
+                else
                     cout << "Oops! Tree does not exist yet. Try creating one first." << endl;
                 break;
             }
